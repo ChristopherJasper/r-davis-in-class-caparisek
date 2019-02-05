@@ -45,6 +45,8 @@ as.character(surveys_long_feet$hindfoot_length)  # $ addresses Column by name
 # Plot the hindfoot_lengths in a histogram (if this doesn’t work, just leave it, and think about it during Part II of the assignment, wink wink).
 hist(as.character(surveys_long_feet$hindfoot_length )) # ERROR: histogram of characters
 
+# Hey Christine, It seems like you ploted the x values as "characters." Doing so makes R not recognize the values as numbers and therefore they can't be plotted. Everything else worked great though. Great detail on the notes as well. Good job! -Chris 
+
 # Commit & Push the R script to GitHub - check your repository on GitHub and make sure your script is there
 
 
