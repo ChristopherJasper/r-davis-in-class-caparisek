@@ -6,6 +6,7 @@
 # Download a new American River data set using this piece of code
 library(tidyverse)
 library(lubridate)
+
 am_riv <- read_csv("https://gge-ucd.github.io/R-DAVIS/data/2015_NFA_solinst_08_05.csv", skip = 13)
         #should have a data frame with 35,038 obs of 5 variables
 
@@ -23,7 +24,9 @@ am_riv$datetime <- ymd_hms(am_riv$datetime)  #Lubridate function to convert date
 weekly_water_tmp<-am_riv%>%
   group_by(week=week(datetime))%>%
   summarise(weekly_avg=mean(Temperature),weekly_max=max(Temperature),weekly_min=min(Temperature))
+
 str(weekly_water_tmp)
+
 glimpse(weekly_water_tmp)
 
 weekly_water_tmp %>% 
@@ -42,7 +45,9 @@ hourly_level<-am_riv%>%
   filter(month(datetime)<7)%>%
   group_by(Date,hour=hour(datetime))%>%
   summarise(hourly_mean_level=mean(Level))
+
 hourly_level$date_hour<-paste(hourly_level$Date," ",hourly_level$hour,sep="")
+
 hourly_level$date_hour<-ymd_h(hourly_level$date_hour)
 
 ggplot(data=hourly_level, aes(x=date_hour,y=hourly_mean_level))+
@@ -59,6 +64,7 @@ load("data/mauna_loa_met_2001_minute.rda")
 
 #create a datetime column (we did this in class).
 mloa_2001$datetime <- paste0(mloa_2001$year, "-", mloa_2001$month, "-", mloa_2001$day, " ", mloa_2001$hour24, ":", mloa_2001$min)
+
 glimpse(mloa_2001)
 
 #Convert to datetime format
